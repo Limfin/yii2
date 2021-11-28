@@ -25,8 +25,14 @@ class AppAsset extends AssetBundle
 		'css/style.css',
 	];
 	public $js = [
-		'js/scripts.js',
+		// 'js/scripts.js',
 	];
+
+	//установка позиции где будет подключены js файл
+	public $jsOptions = [
+		'position' => \yii\web\View::POS_END
+	];
+	//-------------------------->
 	public $depends = [
 		'yii\web\YiiAsset',
 		'yii\bootstrap4\BootstrapAsset',

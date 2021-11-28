@@ -2,6 +2,8 @@
 
 namespace app\controllers;
 
+use Yii;
+
 // use yii\web\Controller;
 
 class PostController extends AppController
@@ -13,6 +15,14 @@ class PostController extends AppController
 
 	public function actionIndex()
 	{
+		if(Yii::$app->request->isAjax) {
+			echo ('<pre>');
+			print_r($_GET);
+			// exit;
+
+			return 'test';
+		};
+
 		return $this->render('test');
 	}
 
