@@ -13,7 +13,9 @@ class AppController extends Controller
 }
 
 //функция доступная в view, потому что она находится не внутри class контроллера
-function debug($arr)
-{
-	echo '<pre>' . print_r($arr, true) . '</pre>';
-}
+//функция перенесане в файл functions.php где записаны все кастомные функции
+// function debug($arr)
+// {
+// 	echo '<pre>' . print_r($arr, true) . '</pre>';
+// }
+//------------------------>

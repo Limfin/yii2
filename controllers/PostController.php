@@ -7,18 +7,20 @@ namespace app\controllers;
 class PostController extends AppController
 {
 
-	public function actionTest()
+	//подключение шаблона basic для всего контроллера PostController
+	public $layout = 'basic';
+	//-------------------------->
+
+	public function actionIndex()
 	{
-		$names = ['Ivanov', 'Petrov', 'Sidorov'];
+		return $this->render('test');
+	}
 
-		$this->debug($names);
-
-		// echo ('<pre>');
-		// print_r($names);
-		// exit;
-
-		return $this->render('test', [
-			'names' => $names,
-		]);
+	public function actionShow()
+	{
+		//подключение шаблона basic для конкретного action
+		// $this->layout = 'basic';
+		//-------------------------->
+		return $this->render('show');
 	}
 }
