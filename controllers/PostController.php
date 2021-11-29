@@ -13,11 +13,19 @@ class PostController extends AppController
 	public $layout = 'basic';
 	//-------------------------->
 
+	public function beforeAction($action)
+	{
+		if($action->id == 'index') {
+			$this->enableCsrfValidation = false; //отключение проверки csrf токена при отправке запроса методом post
+		}
+		return parent::beforeAction($action);
+	}
+
 	public function actionIndex()
 	{
 		if(Yii::$app->request->isAjax) {
 			echo ('<pre>');
-			print_r($_GET);
+			print_r($_POST);
 			// exit;
 
 			return 'test';
