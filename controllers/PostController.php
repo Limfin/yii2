@@ -39,6 +39,16 @@ class PostController extends AppController
 		//подключение шаблона basic для конкретного action
 		// $this->layout = 'basic';
 		//-------------------------->
+
+		//добавление мета тега title для страницы show
+		$this->view->title = 'Title внутри контроллера';
+
+		//добавление мета тега keywords для страницы show
+		$this->view->registerMetaTag(['name' => 'keywords', 'content' => 'ключевые слова заданные в PostController.php']);
+
+		//добавление мета тега description для страницы show
+		$this->view->registerMetaTag(['name' => 'description', 'content' => 'description заданный в PostController.php']);
+
 		return $this->render('show');
 	}
 }
