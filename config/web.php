@@ -7,6 +7,7 @@ $config = [
 	'id' => 'basic',
 	'basePath' => dirname(__DIR__),
 	'bootstrap' => ['log'],
+	'language' => 'ru',
 
 	// глобальное указание шаблона для всех страниц сайта
 	// 'layout' => 'basic',
