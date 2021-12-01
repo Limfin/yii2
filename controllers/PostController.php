@@ -30,6 +30,19 @@ class PostController extends AppController
 
 		$model = new TestForm();
 
+		//проверка что данные из формы загружены
+		if ($model->load(Yii::$app->request->post())) {
+			//проверка что данные провалидированы
+			if ($model->validate()) {
+				Yii::$app->session->setFlash('success', 'Данные приняты');
+				
+				// Перезагрузка формы после успешной отправки.
+				return $this->refresh();
+			} else {
+				Yii::$app->session->setFlash('error', 'Ошибка');
+			}
+		}
+
 		return $this->render('test', [
 			'model' => $model,
 		]);
