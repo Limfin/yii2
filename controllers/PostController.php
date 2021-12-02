@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use Yii;
+use app\models\Category;
 use app\models\TestForm;
 
 // use yii\web\Controller;
@@ -63,6 +64,13 @@ class PostController extends AppController
 		//добавление мета тега description для страницы show
 		$this->view->registerMetaTag(['name' => 'description', 'content' => 'description заданный в PostController.php']);
 
-		return $this->render('show');
+
+		$cats = Category::find()->all();
+
+
+
+		return $this->render('show', [
+			'cats' => $cats,
+		]);
 	}
 }
