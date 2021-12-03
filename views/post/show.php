@@ -30,6 +30,10 @@ $this->registerCss('.container{background: #ccc}');
 ?>
 <!-- ---------------- -->
 
+<?php //foreach ($cats as $cat) 
+	//echo $cat['text'] ."<br><br>";
+?>
+
 <?php 
 echo ('<pre>');
 print_r($cats);

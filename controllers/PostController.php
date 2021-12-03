@@ -65,7 +65,50 @@ class PostController extends AppController
 		$this->view->registerMetaTag(['name' => 'description', 'content' => 'description заданный в PostController.php']);
 
 
-		$cats = Category::find()->all();
+		//выводит все записи
+		// $cats = Category::find()->all();
+
+		//сортировка выводимых данных из базы. SORT_ASC прямой порядок 1,2,3...10 SORT_DESK обратный порядок 10,9,8...1
+		// $cats = Category::find()->orderBy(['id' => SORT_ASC])->all();
+
+		//сортировка выводимых данных из базы.  SORT_DESK обратный порядок 10,9,8...1
+		// $cats = Category::find()->orderBy(['id' => SORT_DESC])->all();
+
+		//вывод данных в виде массива
+		// $cats = Category::find()->asArray()->all();
+
+		//фильтрация выводимых данных. Есть несколько способов записи:
+		// 1 - where('user_id=2'):
+		// $cats = Category::find()->asArray()->where('user_id=2')->all();
+		// 2- where(['user_id' => 2]):
+		// $cats = Category::find()->asArray()->where(['user_id' => 2])->all();
+		// 3- where(['like', 'text', 'своей']): выберет все данные, согласно оператору в данном примере "like", где в поле "text" содержится слово "своей"
+		// $cats = Category::find()->asArray()->where(['like', 'text', 'своей'])->all();
+		// 3- where(['<=', 'user_id', '3']): выберет все данные, согласно оператору в данном примере "<=", где в поле "user_id" содержится слово "3"
+		// $cats = Category::find()->asArray()->where(['<=', 'user_id', '3'])->all();
+
+		//вывод не всех записей, а только одну
+		//первый способ:
+		// $cats = Category::find()->asArray()->where('user_id=2')->limit(1)->all();
+		//второй способ:
+		// $cats = Category::find()->asArray()->where('user_id=2')->one();
+
+		//подсчет количества записей
+		// $cats = Category::find()->asArray()->where('user_id=2')->count();
+
+		//использование метода findOne()
+		// $cats = Category::findOne(['user_id' => 2]);
+
+		//использование метода findAll()
+		// $cats = Category::findAll(['user_id' => 2]);
+
+		//создание своего sql запроса
+		//в этом варианте может быть использована sql инъекция:
+		// $query = "SELECT * FROM `posts` WHERE `text` LIKE '%своей%'";
+		// $cats = Category::findBySql($query)->all();
+		//лучше использовать такой вариант запроса:
+		$query = "SELECT * FROM `posts` WHERE `text` LIKE :search";
+		$cats = Category::findBySql($query, [':search' => '%своей%'])->all();
 
 
 
