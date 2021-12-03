@@ -29,6 +29,15 @@ class PostController extends AppController
 			return 'test';
 		};
 
+		//добавление данных в БД
+		// $article = TestForm::findOne(2);
+		// $article->email = '2@2.com';
+		// $article->save();
+
+		//удаление строки из БД
+		// $article3 = TestForm::findOne(3);
+		// $article3->delete();
+
 		$model = new TestForm();
 
 		// $model->name = 'Автор';
