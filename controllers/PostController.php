@@ -107,8 +107,15 @@ class PostController extends AppController
 		// $query = "SELECT * FROM `posts` WHERE `text` LIKE '%своей%'";
 		// $cats = Category::findBySql($query)->all();
 		//лучше использовать такой вариант запроса:
-		$query = "SELECT * FROM `posts` WHERE `text` LIKE :search";
-		$cats = Category::findBySql($query, [':search' => '%своей%'])->all();
+		// $query = "SELECT * FROM `posts` WHERE `text` LIKE :search";
+		// $cats = Category::findBySql($query, [':search' => '%своей%'])->all();
+
+		//отложенная загрузка
+		// $cats = Category::findOne(2);
+
+		//жадная загрузка
+		$cats = Category::find()->with('products')->where('id = 2')->all();
+
 
 
 
