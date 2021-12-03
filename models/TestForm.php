@@ -2,9 +2,10 @@
 
 namespace app\models;
 
-use yii\base\Model;
+// use yii\base\Model;
+use yii\db\ActiveRecord;
 
-class TestForm extends Model
+/*class TestForm extends Model
 {
 
 	public $name;
@@ -56,4 +57,34 @@ class TestForm extends Model
 		}
 	}
 
+}*/
+
+class TestForm extends ActiveRecord
+{
+	public static function tableName()
+	{
+		return 'articles';
+	}
+
+	//задание названий лейблов для инпутов формы
+	public function attributeLabels()
+	{
+		return [
+			'name' => 'Имя в модели',
+			'email' => 'email в модели',
+			'text' => 'Текстовое поле в модели',
+		];
+	}
+
+	//валидация формы
+	public function rules() {
+		return [
+			//можно по отдельности к каждому инпуту задавать правила валидации либо можно перечислить инпуты в массиве - [['name', 'email'], 'required'],
+			['name', 'required', 'message' => 'Поле обязательно'],
+			//валидалия на то что введен email
+			['email', 'email'],
+			['test', 'required'],
+			['text', 'trim'],
+		];
+	}
 }
